@@ -60,3 +60,4 @@ console.log(maxDepth(oneNode));
 1
 2
 3
+4
