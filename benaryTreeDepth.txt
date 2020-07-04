@@ -10,10 +10,21 @@
 var oneNode = new TreeNode(1)
 oneNode.left = new TreeNode(2)
 oneNode.left.left = new TreeNode(4)
-oneNode.right = new TreeNode(3)
-oneNode.right.right = new TreeNode(5)
-oneNode.right.right.left = new TreeNode(6)
-oneNode.right.right.left.left = new TreeNode(6)
+oneNode.left.left.right = new TreeNode(45)
+oneNode.left.left.right.left = new TreeNode(95)
+oneNode.left.left.right.right = new TreeNode(35)
+
+oneNode.left.left.right.left.left = new TreeNode(905)
+
+oneNode.left.right = new TreeNode(8)
+// oneNode.right = new TreeNode(3)
+// oneNode.right.right = new TreeNode(5)
+// oneNode.right.left = new TreeNode(15)
+// oneNode.right.right.left = new TreeNode(6)
+// oneNode.right.right.left.left = new TreeNode(61)
+// oneNode.right.right.left.left.right = new TreeNode(651)
+// oneNode.right.right.left.left.left = new TreeNode(51)
+
 
  
 /**
@@ -21,39 +32,39 @@ oneNode.right.right.left.left = new TreeNode(6)
  * @return {number}
  */
 
-var nodeSize = function(root){
-  let countNode = 0;
+var nodeSize = function(root1){
+  let countNode = 1;
+  const baseRoot = root1;
+  var root = root1;
   if(!root){
     return countNode;
   } else {
      let sumOfNode = function(root) {
+              if(!root){
+                countNode = 1;
+              }
+              console.log("root.val: " + root.val + " count: " + countNode)
               countNode++;
               let left = root.left
-              let right = root.right 
+              let right = root.right
+ 
+              if(!left && !right) {
+                countNode = 1;
+                root=null
+              }
               if (left) {
                 sumOfNode(left);
               }
               if (right) {
                 sumOfNode(right);
               }
+              
             }
         sumOfNode(root);   
         }
    return countNode
 }
 
-var maxDepth = function(root){
-  let countDeepestNode = 1;
-  if(!root){
-    return countDeepestNode;
-  } else {
-    let left = root.left;
-    let right = root.right;
-    var leftSize = nodeSize(left)
-    var rightSize = nodeSize(right)
-  }
-  console.log(leftSize + " " + rightSize);
-}
 
-console.log(nodeSize(oneNode));
-console.log(maxDepth(oneNode))
+nodeSize(oneNode);
+
