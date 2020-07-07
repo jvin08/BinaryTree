@@ -1,0 +1,51 @@
+
+ function TreeNode(val, left, right) {
+      this.val = (val===undefined ? 0 : val)
+      this.left = (left===undefined ? null : left)
+      this.right = (right===undefined ? null : right)
+  }
+ 
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+*
+ */
+
+
+var oneNode = new TreeNode(10)
+oneNode.left = new TreeNode(5)
+oneNode.right = new TreeNode(15)
+
+oneNode.right.left = new TreeNode(11)
+oneNode.right.right = new TreeNode(20)
+
+var isValidBST = function(root){
+  var min = Number(root.val);
+  
+  let isValid = true;
+  if(!root){
+    isValid = true;
+  } else {
+     let getAllNodes = function(root) {
+              let left = root.left
+              let right = root.right 
+              if (left) {
+                if(left.val <= min){
+                  isValid=false
+                }
+                getAllNodes(left);
+              }
+              if (right) {
+                if(right.val <= min){
+                  isValid=false
+                }
+                getAllNodes(right);
+              }
+            }
+        getAllNodes(root);   
+        }
+   return isValid
+  }
+
+
+console.log(isValidBST(oneNode));

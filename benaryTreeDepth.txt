@@ -7,54 +7,17 @@
       this.right = (right===undefined ? null : right)
   }
 
-var oneNode = new TreeNode(1)
-oneNode.left = new TreeNode(2)
-oneNode.left.left = new TreeNode(4)
-// oneNode.left.left.left = new TreeNode(60)
-// oneNode.left.left.right = new TreeNode(66)
-
-oneNode.right = new TreeNode(3)
-oneNode.right.right = new TreeNode(5)
-// oneNode.right.right.right = new TreeNode(70)
-// oneNode.right.right.right.left = new TreeNode(88)
-
-// oneNode.right.right.right.right = new TreeNode(80)
-// oneNode.right.right.right.right.left = new TreeNode(90)
-// oneNode.right.right.right.left.left.right = new TreeNode(99)
-
-
- 
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-
 var maxDepth = function(root){
-  let countNew = 0;
   if(!root){
-    return countNew;
-  } else {
-     let sumOfNode = function(root) {
-              countNew++;
-              console.log("root.val: " + root.val)
-              let left = root.left
-              let right = root.right 
-              if(left && !right || right && !left){
-                countNew--;//We have to substract because path to the deepest node goes through only one node
-              }
-              if (left) {
-                // countNew++;
-                sumOfNode(left);//Going left we count
-              }
-              if (right) {
-                // countNew++;
-                sumOfNode(right);//Going right we count
-              }
-            }
-        sumOfNode(root);   
-        }
-   return countNew
-}
+    return 0;
+  }
 
-console.log(maxDepth(oneNode));
-1
+  var leftDepth = maxDepth(root.left);
+  var rightDepth = maxDepth(root.right);
+  
+  if(leftDepth > rightDepth){
+    return(leftDepth + 1)
+  } else {
+    return (rightDepth + 1);
+  }
+}
